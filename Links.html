@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My-Links</title>
+    <!-- icon in browser -->
+    <link rel="shortcut icon" href="logo/logo.png" type="image/x-icon" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css.map" />
+
+    <!-- fontAweasome -->
+    <link rel="stylesheet" href="lib/fontawesome/css/all.css" />
+    <link rel="stylesheet" href="lib/fontawesome/css/all.min.css" />
+
+    <!-- my style -->
+    <link rel="stylesheet" href="Css/main.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header class="">
+      <p class="btn btn-dark">
+        Number of Links <span id="num" class="text-primary fw-bold"></span>
+      </p>
+      <input
+        type="text"
+        id="search"
+        class="form-control text-center"
+        style="width: 40%"
+        placeholder="Searching ..."
+      />
+      <div
+        class="d-flex justify-content-center align-content-center gap-2 mx-2"
+      >
+        <button class="btn text-light" id="reload" title="refresh data">
+          <i class="fa-solid fa-refresh"></i>
+        </button>
+        <button
+          class="btn text-light"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          onclick="ChangeMod()"
+          title="add new link"
+        >
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </header>
+    <!-- content -->
+    <div
+      class="mt-4 p-5 row gap-3 justify-content-center align-content-center"
+      id="content"
+    ></div>
+
+    <!-- model 1 -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <p id="modelTitle"></p>
+            </h5>
+            <!-- <button
+              type="button"
+              class="btn-close"
+              them="dark"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              onclick="Clear()"
+            ></button> -->
+          </div>
+          <div class="modal-body">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Title"
+              id="title"
+            />
+            <input
+              class="form-control mt-3"
+              type="text"
+              placeholder="URL"
+              id="url"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              onclick="Clear()"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              id="btn"
+            >
+              Save Item
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- model 2 -->
+    <div
+      class="modal fade"
+      id="DeleteModel"
+      tabindex="-1"
+      aria-labelledby="DeleteModalLabel"
+      aria-hidden="true"
+      onclick=""
+    >
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="DeleteModalLabel">
+              <p>Delete</p>
+            </h5>
+          </div>
+          <div class="modal-body">
+            <p>
+              Do you sure, you want to delete: (<span id="deleteItemName"></span
+              >)
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              id="delete"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bootstrap -->
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js.map"></script>
+    <!-- fontAweasome -->
+    <script src="lib/fontawesome/js/all.js"></script>
+    <script src="lib/fontawesome/js/all.min.js"></script>
+    <!-- my js -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

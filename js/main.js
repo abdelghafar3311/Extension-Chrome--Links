@@ -9,6 +9,10 @@ const TitleMod = document.getElementById("modelTitle");
 const Refresh = document.getElementById("reload");
 const deleteItemName = document.getElementById("deleteItemName");
 const deleteBTN = document.getElementById("delete");
+const DataShowJson = document.getElementById("DataShowJson")
+const Pre = document.getElementById("pre")
+const btnCopy = document.getElementById("Copy")
+
 // ===================================================================
 // Setting
 let data = [];
@@ -204,6 +208,37 @@ Refresh.onclick = () => { // this refresh btn in header
     Refresh.classList.remove("work")
   }, 5000)
 };
+
+DataShowJson.onclick = () => {
+  const raw = JSON.stringify(data) || '';
+  const lines = raw.split(',');
+  const listHtml = lines
+    .map(line => `<p>${line}</p>`)
+    .join('');
+  Pre.innerHTML = listHtml;
+}
+
+btnCopy.addEventListener('click', async () => {
+  const DataString = JSON.stringify(data) || '';
+  try {
+    await navigator.clipboard.writeText(DataString);
+    console.log('Success Copy');
+    btnCopy.classList.add("done");
+    btnCopy.innerHTML = `<i class="fa-solid fa-check"></i>`;
+    setTimeout(() => {
+      btnCopy.classList.remove("done");
+      btnCopy.innerHTML = `<i class="fa-solid fa-clone"></i>`;
+    }, 400)
+  } catch (err) {
+    console.error('Failed Copy Because: ', err);
+    btnCopy.classList.add("wrong");
+    btnCopy.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
+    setTimeout(() => {
+      btnCopy.classList.remove("wrong");
+      btnCopy.innerHTML = `<i class="fa-solid fa-clone"></i>`;
+    }, 400)
+  }
+})
 
 deleteBTN.onclick = () => Delete(keyDelete); // btn in model 2 use to delete
 search.onkeyup = Searching; // input search

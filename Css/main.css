@@ -104,3 +104,33 @@ input {
   font-style: italic;
   color: #498bfd;
 }
+
+.preStyle {
+  background-color: #121212;  
+  color: #e0e0e0;              
+  padding: 1rem;               
+  border-radius: 4px;         
+  font-family: sans-serif;     
+  max-width: 400px;  
+  min-height: 40px;
+  max-height: 20rem;         
+  margin: 1rem auto;        
+}
+
+.copy {
+  margin: 10px;
+  float: right;
+  display: block;
+}
+.copy:focus ,.copy:hover {
+  background-color: transparent !important;
+}
+.copy.wrong {
+  border-color: #dd1706 !important;
+  color: #dd1706 !important;
+}
+
+.copy.done {
+  border-color: #0ddd06 !important;
+  color: #0ddd06 !important;
+}

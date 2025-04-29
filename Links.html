@@ -38,6 +38,15 @@
         </button>
         <button
           class="btn text-light"
+          id="DataShowJson"
+          title="Show JSON Data Storage"
+          data-bs-toggle="modal"
+          data-bs-target="#DataModel"
+        >
+          <i class="fa-solid fa-database"></i>
+        </button>
+        <button
+          class="btn text-light"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           onclick="ChangeMod()"
@@ -148,6 +157,39 @@
               id="delete"
             >
               Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- model 3 JSON -->
+    <div
+      class="modal fade"
+      id="DataModel"
+      tabindex="-1"
+      aria-labelledby="DataModelLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="DataModelLabel">
+              <p>JSON Data</p>
+            </h5>
+          </div>
+          <div class="modal-body">
+            <button class="copy btn btn-outline-primary" id="Copy">
+              <i class="fa-solid fa-clone"></i>
+            </button>
+            <pre id="pre" class="preStyle"></pre>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
             </button>
           </div>
         </div>

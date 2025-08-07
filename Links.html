@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="Css/main.css" />
   </head>
   <body>
+    
     <!-- header -->
     <header class="">
       <p class="btn btn-dark">
@@ -33,32 +34,49 @@
       <div
         class="d-flex justify-content-center align-content-center gap-2 mx-2"
       >
-        <button class="btn text-light" id="reload" title="refresh data">
-          <i class="fa-solid fa-refresh"></i>
-        </button>
-        <button
-          class="btn text-light"
-          id="DataShowJson"
-          title="Show JSON Data Storage"
-          data-bs-toggle="modal"
-          data-bs-target="#DataModel"
+        <button class="btn text-light" id="showLinksList"><i class="fa-solid fa-list"></i></button>
+        <div
+          class="gap-2 mx-2 listLinks"
+          id="linksList"
         >
-          <i class="fa-solid fa-database"></i>
-        </button>
-        <button
-          class="btn text-light"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          onclick="ChangeMod()"
-          title="add new link"
-        >
-          <i class="fa-solid fa-plus"></i>
-        </button>
+          <button class="btn text-light" id="reload" title="refresh data">
+            <span class="round"><i class="fa-solid fa-refresh"></i></span>
+            <span>Refresh</span>
+          </button>
+          <button
+            class="btn text-light"
+            id="DataShowJson"
+            title="Show JSON Data Storage"
+            data-bs-toggle="modal"
+            data-bs-target="#DataModel"
+          >
+            <i class="fa-solid fa-database"></i>
+            <span>Show Database</span>
+          </button>
+          <button
+            class="btn text-light"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            onclick="ChangeMod();Clear()"
+            title="add new link"
+          >
+            <i class="fa-solid fa-plus"></i>
+            <span>Add link</span>
+          </button>
+          <button
+            class="btn text-light"
+            data-bs-toggle="modal"
+            data-bs-target="#JsonModal"
+          >
+            <i class="fa-solid fa-list"></i>
+            <span>Add links Json</span>
+          </button>
+        </div>
       </div>
     </header>
     <!-- content -->
     <div
-      class="mt-4 p-5 row gap-3 justify-content-center align-content-center"
+      class="mt-5 p-5 row gap-3 justify-content-center align-content-center"
       id="content"
     ></div>
 
@@ -152,7 +170,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-danger"
               data-bs-dismiss="modal"
               id="delete"
             >
@@ -178,14 +196,67 @@
             </h5>
           </div>
           <div class="modal-body">
-            <button class="copy btn btn-outline-primary" id="Copy">
-              <i class="fa-solid fa-clone"></i>
-            </button>
+            <div class="d-flex justify-content-end align-content-center">
+              <button class="copy btn text-light" id="Copy">
+                <i class="fa-solid fa-clone"></i>
+              </button>
+            </div>
+
             <pre id="pre" class="preStyle"></pre>
           </div>
           <div class="modal-footer">
             <button
               type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- model 4 +Json -->
+    <div
+      class="modal fade"
+      id="JsonModal"
+      tabindex="-1"
+      aria-labelledby="JsonModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="JsonModal">
+              <p>Add JSON</p>
+            </h5>
+          </div>
+          <div class="modal-body">
+            <div class="textarea">
+              <textarea class="form-control mb-3 bg-dark text-light" style="height: 170px;" id="textJson" placeholder="here but the JSON Data and must has this data [{title: string, url:string},...]"></textarea>
+            </div>
+            <div class="resultData" id="resJsonDataLinks">
+              <div class="header">
+                <span>Number of Links: <b id="numDataJsonList">0</b></span>
+              </div>
+              <div class="p-2 row gap-3 justify-content-center" id="contentListJson">
+                <!-- <div class="item col-1">
+                  <div class="cont-img">
+                    <img src="./logo/logo.png" alt="">
+                  </div>
+                  <span class="info">
+                    <h5>Title</h5>
+                    <i class="text-secondry">Link here</i>
+                  </span>
+                </div> -->
+              </div>
+            </div>
+            <button class="btn btn-primary mb-3" id="RUNORSAVEJSONDATA">Run</button>
+            <button class="btn btn-outline-success mb-3 reRun" id="SaveListJson">Save</button>
+          <div class="modal-footer">
+            <button
+              type="button"
+              onclick="reWorkJsonAdded()"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >

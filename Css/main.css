@@ -16,7 +16,34 @@ header {
   top: 0;
   background-color: #222;
   color: #fff;
+  z-index: 888;
 }
+.listLinks {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  width: 170px;
+  top: 50px;
+  right: 10px;
+  padding: 5px;
+  border: 1px solid #444;
+}
+.listLinks.show {
+  display: flex;
+}
+.listLinks > button {
+  width: 100%;
+  transition: 0.3s;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+}
+
+.listLinks > button:hover {
+  background-color: #4444448a;
+}
+
 input {
   background-color: #222 !important;
   color: #fff !important;
@@ -33,10 +60,12 @@ input {
   flex-direction: row;
   border-radius: 20px;
   transition: 0.3s;
-  overflow: auto;
-  width: 19rem;
+  /* overflow-x: hidden; */
+  width: 20rem;
+  position: relative;
 }
-.item-link .cont-img {
+.item-link .cont-img,
+.resultData .item .cont-img {
   border: 1px solid #444;
   border-radius: 50%;
   width: 35px;
@@ -47,7 +76,8 @@ input {
   align-items: center;
   padding: 2px;
 }
-.item-link .cont-img img {
+.item-link .cont-img img,
+.resultData .item .cont-img img {
   width: 100%;
   height: 100%;
   background-size: cover;
@@ -55,7 +85,7 @@ input {
 .item-link .bbtn {
   border-radius: 50%;
   border: 1px solid transparent;
-  width: 25px;
+  width: 30px;
   height: 26px;
   display: flex;
   justify-content: center;
@@ -83,7 +113,7 @@ input {
   color: #498bfd;
 }
 
-#reload.work {
+#reload.work > span.round {
   animation: rounded 1s linear infinite;
 }
 
@@ -96,7 +126,8 @@ input {
   }
 }
 
-.btn:active ,.btn:focus {
+.btn:active,
+.btn:focus {
   box-shadow: 0 0 0 transparent;
 }
 
@@ -106,23 +137,26 @@ input {
 }
 
 .preStyle {
-  background-color: #121212;  
-  color: #e0e0e0;              
-  padding: 1rem;               
-  border-radius: 4px;         
-  font-family: sans-serif;     
-  max-width: 400px;  
+  background-color: #121212;
+  color: #e0e0e0;
+  padding: 1rem;
+  border-radius: 4px;
+  font-family: sans-serif;
+  max-width: 400px;
   min-height: 40px;
-  max-height: 20rem;         
-  margin: 1rem auto;        
+  max-height: 20rem;
+  margin: 1rem auto;
+  width: 100%;
 }
 
 .copy {
   margin: 10px;
   float: right;
   display: block;
+  border: none !important;
 }
-.copy:focus ,.copy:hover {
+.copy:focus,
+.copy:hover {
   background-color: transparent !important;
 }
 .copy.wrong {
@@ -133,4 +167,165 @@ input {
 .copy.done {
   border-color: #0ddd06 !important;
   color: #0ddd06 !important;
+}
+
+/* — إطار لكل كائن في المصفوفة */
+.obj-block {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  /* border: 1px solid #3c3c3c; */
+  border-radius: 0.25rem;
+}
+/* — إطار لكل سطر داخل الكائن */
+.obj-block p {
+  margin: 0.2rem 0;
+  padding: 0.2rem 0.5rem;
+  /* border: 1px solid #3c3c3c; */
+  border-radius: 0.25rem;
+  display: block;
+  width: calc(100% - 1.2rem);
+}
+/* — ألوان المفاتيح والقيم */
+.json-key {
+  color: #008cff;
+}
+.json-string {
+  color: #b76544;
+}
+.json-number {
+  color: #b5cea8;
+}
+.json-boolean,
+.json-null {
+  color: #dcdcaa;
+}
+
+.effect {
+  position: relative;
+  width: max-content;
+}
+
+.effect span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  /* color: #fff; */
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #121212;
+  font-size: 8px;
+  transition: 0.3s;
+}
+
+.effect:hover span {
+  opacity: 1;
+  /* top: -12px; */
+}
+
+/* list */
+
+.closeList {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #4444448a;
+  top: 0;
+  left: 0;
+  z-index: 997;
+  border-radius: 20px;
+}
+
+.list {
+  padding: 5px 2px;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 999;
+  background-color: #20252a;
+  animation: showList 0.4s ease-in;
+  overflow: hidden;
+  border: 1px solid #7f7f7f71;
+  max-height: 97px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.list .item {
+  width: 7rem;
+  display: flex;
+  gap: 5px;
+  transition: 0.3s;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.list .item:hover {
+  background-color: #596169;
+}
+
+@keyframes showList {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* model of Add Json */
+
+.resultData {
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  overflow-y: auto;
+  max-height: 10rem;
+  display: none;
+}
+
+.resultData.show {
+  display: block;
+}
+
+.resultData .header {
+  padding: 5px;
+  border-bottom: 1px solid #444;
+}
+
+.resultData .item {
+  padding: 5px;
+  border: 1px solid #444;
+  display: flex;
+  gap: 5px;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  border-radius: 30px;
+  transition: 0.3s;
+  overflow-x: auto;
+  width: 20rem;
+  position: relative;
+}
+
+.resultData .info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.resultData .info i {
+  color: #aaa;
+  font-size: 12px;
+}
+
+.reRun {
+  display: none;
+}
+
+.reRun.show {
+  display: inline-block;
 }
